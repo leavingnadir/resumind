@@ -85,3 +85,5 @@ This template comes with [Tailwind CSS](https://tailwindcss.com/) already config
 ---
 
 Built with ❤️ using React Router.
+
+<img width="803" height="162" alt="image" src="https://github.com/user-attachments/assets/5ff739aa-3e5c-4413-a349-e2fe67ae9dac" />
