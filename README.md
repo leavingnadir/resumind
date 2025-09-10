@@ -1,89 +1,34 @@
-# Welcome to React Router!
+<h3 align="center">AI Resume Analyzer</h3>
 
-A modern, production-ready template for building full-stack React applications using React Router.
+ #  A Can't PDF Convert to PNG Error
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+Explanation of the Error and Fix
 
-## Features
+○ The error happens because the PDF.js library (pdfjs-dist) and the PDF worker file (pdf.worker.min.mjs) are running on different versions.
+○ Your library is using API version 5.4.149.
+○ But the worker file is still on version 5.3.93.
+○ Since the library and worker must always match exactly, this mismatch causes the PDF conversion to fail.
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+## How to Fix
 
-## Getting Started
+You have two options:
 
-### Installation
+01. Update the worker file to match the library (recommended)
 
-Install the dependencies:
+○ Make sure you are using the latest version of pdfjs-dist:
+```
+npm install pdfjs-dist@latest
+```
 
-```bash
+Then copy the correct worker file from node_modules into your public folder:
+```
+copy .\node_modules\pdfjs-dist\build\pdf.worker.min.mjs .\public\pdf.worker.min.mjs
+```
+○ Now the worker and library versions will be the same, and the error will disappear.
+
+02. Downgrade the library to match the worker
+
+○ If you cannot update the worker file, you can change your package.json to use the older version (e.g., pdfjs-dist@5.3.93) and run:
+```
 npm install
 ```
-
-### Development
-
-Start the development server with HMR:
-
-```bash
-npm run dev
-```
-
-Your application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
-
-<img width="803" height="162" alt="image" src="https://github.com/user-attachments/assets/5ff739aa-3e5c-4413-a349-e2fe67ae9dac" />
